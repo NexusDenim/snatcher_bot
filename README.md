@@ -1,2 +1,3 @@
-# snatcher_bot
-Discrod Bot
+# Snatcher Bot
+Discord Bot
+
