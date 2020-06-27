@@ -20,7 +20,7 @@ client.on('message',async message => {
             let help_fields = [
                 {name: `${prefix}help`, value: 'Prints the Help which is here ofcourse!'},
                 {name: `${prefix}quote random/today`, value: 'A Quote for you to inspire, Today or Random'},
-                {name: `${prefix}stats`, value: 'User Stats'},
+                {name: `${prefix}stats user_mention`, value: 'Stats of mentioned User'},
                 {name: `${prefix}greet`, value: 'Greetings to User'},
                 {name: `${prefix}ping`, value: 'Ping back'},
                 {name: `${prefix}covid country_name`, value: 'Covid 19 Report for Country'},
@@ -49,7 +49,8 @@ client.on('message',async message => {
             }
             break;
         case 'stats':
-            const user = message.author;
+            const user = (args.length == 0 || args[0] == '') ? message.author : helpers.getUserFromMention(client,args[0]);
+            if(!user){message.channel.send('Invalid User'); return;}
             let user_fields= [
                 {name: 'Id : ', value: user.id},
                 {name: 'Status : ', value: (user.bot) ? "Bot" : "Human"},
